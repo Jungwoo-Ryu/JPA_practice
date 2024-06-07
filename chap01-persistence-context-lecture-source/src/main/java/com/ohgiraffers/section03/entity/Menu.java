@@ -1,8 +1,8 @@
-package com.ohgiraffers.section02.crud;
+package com.ohgiraffers.section03.entity;
 
 import jakarta.persistence.*;
 
-@Entity(name="section02Menu")
+@Entity(name="section3Menu")
 @Table(name="tbl_menu")
 public class Menu{
 
@@ -10,9 +10,9 @@ public class Menu{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     /*
-    *  auto : 우리가 사용하는 DB에 따른다.
-    *   Identity / Sequence : mysql auto_increment 사용 oracle sequence
-    * */
+     *  auto : 우리가 사용하는 DB에 따른다.
+     *   Identity / Sequence : mysql auto_increment 사용 oracle sequence
+     * */
     @Column(name = "menu_code")
     private int menuCode;
     @Column(name = "menu_name")
@@ -24,14 +24,15 @@ public class Menu{
     @Column(name = "orderable_status")
     private String orderableStatus;
 
-    public Menu(String menuName, int menuPrice, int categoryCode, String orderableStatus) {
+    public Menu(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
+        this.menuCode = menuCode;
         this.menuName = menuName;
         this.menuPrice = menuPrice;
         this.categoryCode = categoryCode;
         this.orderableStatus = orderableStatus;
     }
 
-    public Menu() {
+    protected Menu() {
 
     }
 
