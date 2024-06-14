@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>메뉴번호</th>
+        <th>메뉴이름</th>
+        <th>메뉴가격</th>
+        <th>카테고리코드</th>
+        <th>판매상태</th>
+    </tr>
+    <tr th:each="menu : ${menuList}">
+        <th th:text="${menu.menuCode}"></th>
+        <th th:text="${menu.menuName}"></th>
+        <th th:text="${menu.menuPrice}"></th>
+        <th th:text="${menu.categoryCode}"></th>
+        <th th:text="${menu.orderableStatus}"></th>
+    </tr>
+</table>
+<div id="paging">
+    <!-- 맨 앞 페이지 << 이동하는 버튼 -->
+    <button th:onclick="'location.href=\'/menu/list?page=' + ${paging.startPage} + '\''" >맨앞으로</button>
+
+    <!-- 이전 페이지로 이동 -->
+    <button th:onclick="'location.href=\'/menu/list?page=' + ${paging.currentPage - 1} + '\''"
+            th:disabled="${ menuList.first }">
+        이전
+    </button>
+
+    <!-- 숫자버튼 -->
+    <th:block th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage) }">
+        <button th:onclick="'location.href=\'/menu/list?page=' + ${page} + '\''"
+                th:text="${page}"
+                th:disabled="${ paging.currentPage eq page }">
+        </button>
+    </th:block>
+
+    <!-- 다음 페이지로 이동 -->
+    <button th:onclick="'location.href=\'/menu/list?page=' + ${paging.currentPage + 1} + '\''"
+            th:disabled="${menuList.last}">
+        다음
+    </button>
+    <!-- 맨 뒤 페이지 >> 이동하는 버튼 -->
+    <button th:onclick="'location.href=\'/menu/list?page=' + ${paging.endPage} + '\''">맨뒤로</button>
+
+</div>
+</body>
+</html>

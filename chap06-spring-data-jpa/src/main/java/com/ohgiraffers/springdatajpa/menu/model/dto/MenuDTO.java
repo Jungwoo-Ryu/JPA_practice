@@ -1,32 +1,16 @@
-package com.ohgiraffers.namednativequery.section01;
+package com.ohgiraffers.springdatajpa.menu.model.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+public class MenuDTO {
 
-@Entity(name = "section02Menu")
-@Table(name = "tbl_menu")
-public class Menu {
-    @Id
-    @Column(name = "menu_code")
     private int menuCode;
-
-    @Column(name = "menu_name")
     private String menuName;
-
-    @Column(name = "menu_price")
     private int menuPrice;
-
-    @Column(name = "category_code")
     private int categoryCode;
-
-    @Column(name= "orderable_status")
     private String orderableStatus;
 
-    protected Menu() {}
+    public MenuDTO() {}
 
-    public Menu(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
+    public MenuDTO(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
         this.menuCode = menuCode;
         this.menuName = menuName;
         this.menuPrice = menuPrice;
@@ -70,18 +54,18 @@ public class Menu {
         return orderableStatus;
     }
 
+    public void setOrderableStatus(String orderableStatus) {
+        this.orderableStatus = orderableStatus;
+    }
+
     @Override
     public String toString() {
-        return "Menu{" +
+        return "MenuDTO{" +
                 "menuCode=" + menuCode +
                 ", menuName='" + menuName + '\'' +
                 ", menuPrice=" + menuPrice +
                 ", categoryCode=" + categoryCode +
                 ", orderableStatus='" + orderableStatus + '\'' +
                 '}';
-    }
-
-    public void setOrderableStatus(String orderableStatus) {
-        this.orderableStatus = orderableStatus;
     }
 }
